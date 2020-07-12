@@ -97,6 +97,22 @@ The following syntax options are available when calling the Application Insights
 |Cluster that contains all apps/workspaces in the subscription and are members of this resource group    |   cluster(`https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>`)      |    cluster(`https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>`)      |
 |Cluster that contains only the defined resource in this subscription      |    cluster(`https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.insights/components/<ai-app-name>`)    |  cluster(`https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>`)     |
 
+### Function supportability 
+
+The Azure Data Explorer proxy cluster supports functions for both Application Insights and Log Analytics.
+This enables cross-cluster queries to reference an Azure Monitor Tabular Function  directly.
+
+The following commands are supported by the proxy:
+```kusto
+.show functions
+.show function {FunctionName}
+.show database {DataBaseName} schema as json
+```
+NOTE: 
+1.	Azure Monitor supports only Tabular Functions
+2.	Azure Monitor Tabular Functions currently do not support parameters
+
+
 ## Next steps
 
 [Write queries](write-queries.md)
